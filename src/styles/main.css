@@ -1,0 +1,9 @@
+
+#particleJS-container{
+  position: absolute;
+  z-index: 0;
+}
+#app{
+  position: relative;
+
+}

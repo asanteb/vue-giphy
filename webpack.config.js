@@ -43,6 +43,7 @@ module.exports = {
           objectAssign: 'Object.assign'
         }
       },
+      { test: /\.css$/, loader: "style-loader!css-loader" },
       {
         test: /\.styl$/,
         loader: ['style-loader', 'css-loader', 'stylus-loader']
