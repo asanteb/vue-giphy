@@ -4655,6 +4655,10 @@ uuid@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
 
+v-autocomplete@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/v-autocomplete/-/v-autocomplete-1.8.0.tgz#37dd99e196450309a3006beb33d5236d67d83678"
+
 validate-npm-package-license@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/validate-npm-package-license/-/validate-npm-package-license-3.0.1.tgz#2804babe712ad3379459acfbe24746ab2c303fbc"
@@ -4722,7 +4726,13 @@ vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
 
-vue@^2.4.4:
+vue2-autocomplete-js@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/vue2-autocomplete-js/-/vue2-autocomplete-js-0.2.2.tgz#b7a1882d978cb0925bb878d5ea0dd4755a261f95"
+  dependencies:
+    vue "^2.4.2"
+
+vue@^2.4.2, vue@^2.4.4:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.3.tgz#e1a3b1f49b6e93e574ce040b95cbc873912fecc1"
 
