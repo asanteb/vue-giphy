@@ -22,7 +22,7 @@
                 >
                   <v-card flat tile>
                     <v-card-media
-                      :src="items[n].images.original.url"
+                      :src="items[n].images.downsized.url"
                       height="150px"
                     >
                     </v-card-media>
@@ -37,7 +37,12 @@
     </main>
     <v-footer :fixed="fixed" app>
       <a href = "mailto: asante@geekenforcer.com">asante@geekenforcer.com</a>
-      <!-- <span>asante@geekenforcer</span> -->
+      <v-btn flat icon>
+        <v-icon>fa-github-alt</v-icon>
+      </v-btn>
+      <v-btn flat icon>
+        <v-icon>fa-twitter</v-icon>
+      </v-btn>
     </v-footer>
   </v-app>
 </template>
@@ -55,11 +60,9 @@
   export default {
     data () {
       return {
-        item: {id: 9, title: 'Lion'},
         clipped: false,
         drawer: true,
         fixed: false,
-        cc: [{title:'11w12w', id: 'w1w1w1'}, {title: 'help', id: 'w1w121w1'}],
         items: [],
         miniVariant: false,
         right: true,
@@ -94,7 +97,7 @@
         .catch(err => console.log(err))
       },
       handleClick (n) {
-        const img = this.items[n].images.original.url
+        const img = this.items[n].images.downsized.url
         this.initParticles(img)
         console.log(img)
       },
