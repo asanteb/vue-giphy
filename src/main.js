@@ -15,7 +15,7 @@ new Vue({
   el: '#app',
   render: h => h(App),
   mounted () {
-    this.$nextTick(() => this.initParticles())
+    //this.$nextTick(() => this.initParticles())
   },
   methods: {
     initParticles () {

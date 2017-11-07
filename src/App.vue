@@ -5,28 +5,20 @@
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
       </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>remove</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>menu</v-icon>
-      </v-btn>
     </v-toolbar>
-    <main>
-      <v-content>
-        <v-container fluid>
-          <div id="particleJS-container">
+    <main >
+      <v-container class="text-xs-center" >
+        <v-layout row child-flex justify-center align-center wrap id='app1'>
+        <v-flex xs12 sm6>
+            <v-select
+              label="Select"
+              autocomplete
+            ></v-select>
+          </v-flex>
+          </v-layout>
+          <div id="pjs">
           </div>
-          <div id="app1">
-            CONTENT
-          </div>
-        </v-container>
-      </v-content>
+      </v-container>
     </main>
     <v-footer :fixed="fixed" app>
       <span>&copy; 2017</span>
@@ -35,6 +27,9 @@
 </template>
 
 <script>
+  import particles from './assets/particles.json'
+
+  const state = {}
   export default {
     data () {
       return {
@@ -47,7 +42,17 @@
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: 'Vuetify.js'
+        title: 'Vuetify.js',
+        state
+      }
+    },
+    mounted () {
+      this.$nextTick(() => this.initParticles())
+    },
+    methods: {
+      initParticles () {
+        console.log('loaded')
+        particlesJS('pjs', particles)
       }
     }
   }
