@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <main >
-
       <v-container class="text-xs-center" >
         <v-layout row child-flex justify-center align-center wrap id='app1'>
           <v-flex xs12 sm6>
@@ -13,14 +12,15 @@
             ></v-text-field>
           </v-flex>
             <v-container fluid v-bind="{ [`grid-list-${size}`]: true }">
-              <v-layout row wrap v-if="items.length > 0">
+              <v-layout row wrap v-if="items.length > 0 && items[0].images">
                 <v-flex
                   xs4
                   v-for="n in 3"
                   :key="n"
                   v-on:click="handleClick(n)"
+                  v-on:mouseover="handleClick(n)"
                 >
-                  <v-card flat tile>
+                  <v-card flat tile href="#">
                     <v-card-media
                       :src="items[n].images.downsized.url"
                       height="150px"
@@ -30,6 +30,44 @@
                 </v-flex>
               </v-layout>
             </v-container>
+            <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" :overlay="false">
+              <v-card>
+                <v-toolbar dark color="primary">
+                  <v-btn icon @click.native="dialog = false" dark>
+                    <v-icon>close</v-icon>
+                  </v-btn>
+                  <v-toolbar-title>Settings</v-toolbar-title>
+                </v-toolbar>
+                  <v-card>
+                    <v-card-media
+                      :src="selectedImage.img"
+                      height="150px"
+                    >
+                  </v-card>
+                <v-divider></v-divider>
+                <v-subheader inset>Rating</v-subheader>
+                  <v-text-field
+                    name="input-3"
+                    label="Label Text"
+                    value="Input text"
+                    disabled
+                  ></v-text-field>
+                <v-subheader inset>Source</v-subheader>
+                <v-text-field
+                    name="input-3"
+                    label="Label Text"
+                    value="Input text"
+                    disabled
+                  ></v-text-field>
+                <v-subheader inset>Date</v-subheader>
+                <v-text-field
+                    name="input-3"
+                    label="Label Text"
+                    value="Input text"
+                    disabled
+                  ></v-text-field>
+              </v-card>
+            </v-dialog>
           </v-flex>
         </v-layout>
         <div id="pjs"></div>
@@ -63,6 +101,7 @@
         clipped: false,
         drawer: true,
         fixed: false,
+        dialog: false,
         items: [],
         miniVariant: false,
         right: true,
@@ -70,7 +109,7 @@
         rightDrawer: false,
         select: [],
         search: null,
-        selectedImage: '',
+        selectedImage: {img: '', title: '', rating: '', source: '', date: ''},
         size: 'sm',
         userInput: '',
         title: 'Vuetify.js',
@@ -97,8 +136,19 @@
         .catch(err => console.log(err))
       },
       handleClick (n) {
+        const downsize_img = this.items[n].images.downsized.url
         const img = this.items[n].images.downsized.url
-        this.initParticles(img)
+        const obj = {
+          img: img,
+          title: this.items[n].title,
+          rating: this.items[n].rating,
+          source: this.items[n].source,
+          date: this.items[n].import_datetime
+        }
+        this.selectedImage = obj
+        this.dialog = true
+        this.initParticles(downsize_img)
+
         console.log(img)
       },
       initParticles,
