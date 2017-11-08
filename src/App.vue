@@ -84,29 +84,24 @@
     windowOpener,
   } from './methods'
   
-
   const API_KEY = 'dc6zaTOxFJmzC'
-  const state = {items: []}
+  
   export default {
     data () {
       return {
-        clipped: false,
-        drawer: true,
         fixed: false,
         dialog: false,
         items: [],
-        miniVariant: false,
-        right: true,
         loading: false,
-        rightDrawer: false,
-        select: [],
         search: null,
-        selectedImage: {img: '', title: '', rating: '', source: '', date: ''},
+        selectedImage: {
+          img: '',
+          title: '',
+          rating: '',
+          source: '',
+          date: ''
+        },
         size: 'sm',
-        userInput: '',
-        title: 'Vuetify.js',
-        state,
-        q: {}
       }
     },
     mounted () {
@@ -147,9 +142,6 @@
       search (val) {
         if (val) this.giphy_search(val)
       }
-    },
-    components: {
-
     }
   }
 </script>
