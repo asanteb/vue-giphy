@@ -2,7 +2,7 @@
   <v-app>
     <main >
       <v-container class="text-xs-center" >
-        <v-layout row child-flex justify-center align-center wrap id='app1'>
+        <v-layout row child-flex justify-center align-center wrap id='main-content'>
           <v-flex xs12 sm6>
             <v-flex>
             <v-text-field
@@ -85,7 +85,7 @@
   } from './methods'
   
   const API_KEY = 'dc6zaTOxFJmzC'
-  
+
   export default {
     data () {
       return {
