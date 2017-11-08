@@ -116,7 +116,7 @@
           headers: {},
           params:  {api_key: API_KEY, q:input, rating: 'pg', limit: 5}
         })
-        .then(res => {this.items = res.data.data; console.log(res.data.data)})
+        .then(res => this.items = res.data.data)
         .catch(err => console.log(err))
       },
       handleClick (n) {

@@ -10,9 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.17.0",
-    "v-autocomplete": "^1.8.0",
     "vue": "^2.4.4",
-    "vue2-autocomplete-js": "^0.2.2",
     "vuetify": "^0.16.9"
   },
   "devDependencies": {
