@@ -19,6 +19,7 @@
                   :key="n"
                   v-on:click="handleClick(n)"
                   v-on:mouseover="handleHover(n)"
+                  v-if="items[n].images"
                 >
                   <v-card flat tile href="#">
                     <v-card-media
@@ -77,12 +78,12 @@
 </template>
 
 <script>
-
+  import axios from 'axios'
   import {
     initParticles,
+    windowOpener,
   } from './methods'
-  import Result from './components/Result.vue'
-  import axios from 'axios'
+  
 
   const API_KEY = 'dc6zaTOxFJmzC'
   const state = {items: []}
@@ -112,18 +113,15 @@
       this.$nextTick(() => {this.initParticles()})
     },
     methods: {
-      getLabel (item) {
-        return item.title
-      },
       giphy_search (input) {
         axios.request({
           method:  "GET",
           url:     "/search",
           baseURL: "http://api.giphy.com/v1/gifs",
           headers: {},
-          params:  {api_key: API_KEY, q:input}
+          params:  {api_key: API_KEY, q:input, rating: 'pg', limit: 5}
         })
-        .then(res => {this.items = res.data.data; console.log(input, this.items)})
+        .then(res => {this.items = res.data.data; console.log(res.data.data)})
         .catch(err => console.log(err))
       },
       handleClick (n) {
@@ -135,16 +133,14 @@
         const obj = {
           img: img,
           title: this.items[n].title,
-          rating: this.items[n].rating,
+          rating: this.items[n].rating.toUpperCase(),
           source: this.items[n].source,
           date: this.items[n].import_datetime
         }
         this.selectedImage = obj
         this.initParticles(downsize_img)
       },
-      windowOpener (link) {
-        window.open(link, '_blank')
-      },
+      windowOpener,
       initParticles,
     },
     watch: {
