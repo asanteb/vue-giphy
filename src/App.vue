@@ -51,7 +51,7 @@
                   </p>
                   <h6>Source</h6>
                   <p>
-                    {{selectedImage.source}}
+                    <a :href="selectedImage.source">{{selectedImage.source}}</a>
                   </p>
                   <h6>Date</h6>
                   <p>
