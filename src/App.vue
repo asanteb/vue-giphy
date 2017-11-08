@@ -112,7 +112,7 @@
         axios.request({
           method:  "GET",
           url:     "/search",
-          baseURL: "http://api.giphy.com/v1/gifs",
+          baseURL: "https://api.giphy.com/v1/gifs",
           headers: {},
           params:  {api_key: API_KEY, q:input, rating: 'pg', limit: 5}
         })
