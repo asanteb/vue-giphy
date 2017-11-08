@@ -18,7 +18,7 @@
                   v-for="n in 3"
                   :key="n"
                   v-on:click="handleClick(n)"
-                  v-on:mouseover="handleClick(n)"
+                  v-on:mouseover="handleHover(n)"
                 >
                   <v-card flat tile href="#">
                     <v-card-media
@@ -36,36 +36,27 @@
                   <v-btn icon @click.native="dialog = false" dark>
                     <v-icon>close</v-icon>
                   </v-btn>
-                  <v-toolbar-title>Settings</v-toolbar-title>
+                  <v-toolbar-title>{{selectedImage.title}}</v-toolbar-title>
                 </v-toolbar>
-                  <v-card>
-                    <v-card-media
-                      :src="selectedImage.img"
-                      height="150px"
-                    >
+                  <v-card class="text-xs-center">
+                    <img :src="selectedImage.img"></img>
                   </v-card>
                 <v-divider></v-divider>
-                <v-subheader inset>Rating</v-subheader>
-                  <v-text-field
-                    name="input-3"
-                    label="Label Text"
-                    value="Input text"
-                    disabled
-                  ></v-text-field>
-                <v-subheader inset>Source</v-subheader>
-                <v-text-field
-                    name="input-3"
-                    label="Label Text"
-                    value="Input text"
-                    disabled
-                  ></v-text-field>
-                <v-subheader inset>Date</v-subheader>
-                <v-text-field
-                    name="input-3"
-                    label="Label Text"
-                    value="Input text"
-                    disabled
-                  ></v-text-field>
+                <br />
+                <v-content class="text-xs-center">
+                  <h6>Rating</h6>
+                  <p>
+                    {{selectedImage.rating}}
+                  </p>
+                  <h6>Source</h6>
+                  <p>
+                    {{selectedImage.source}}
+                  </p>
+                  <h6>Date</h6>
+                  <p>
+                    {{selectedImage.date}}
+                  </p>
+                </v-content>
               </v-card>
             </v-dialog>
           </v-flex>
@@ -74,11 +65,11 @@
       </v-container>
     </main>
     <v-footer :fixed="fixed" app>
-      <a href = "mailto: asante@geekenforcer.com">asante@geekenforcer.com</a>
-      <v-btn flat icon>
+      <span><a href="asante@geekenforcer.com">asante@geekenforcer.com</a></span>
+      <v-btn flat icon v-on:click="windowOpener('https://github.com/asantebuil/vue-giphy')">
         <v-icon>fa-github-alt</v-icon>
       </v-btn>
-      <v-btn flat icon>
+      <v-btn flat icon v-on:click="windowOpener('https://twitter.com/yamoshotto')">
         <v-icon>fa-twitter</v-icon>
       </v-btn>
     </v-footer>
@@ -136,6 +127,9 @@
         .catch(err => console.log(err))
       },
       handleClick (n) {
+        this.dialog = true
+      },
+      handleHover (n) {
         const downsize_img = this.items[n].images.downsized.url
         const img = this.items[n].images.downsized.url
         const obj = {
@@ -146,10 +140,10 @@
           date: this.items[n].import_datetime
         }
         this.selectedImage = obj
-        this.dialog = true
         this.initParticles(downsize_img)
-
-        console.log(img)
+      },
+      windowOpener (link) {
+        window.open(link, '_blank')
       },
       initParticles,
     },
