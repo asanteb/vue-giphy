@@ -1,7 +1,7 @@
 # vue-giphy
 
 > A Vue.js Challenge Project
-
+[DEMO](https://asantebuil.github.io/vue-giphy/)
 ## Build Setup
 
 ``` bash
